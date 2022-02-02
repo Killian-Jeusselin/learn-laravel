@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Models\Article;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +60,5 @@ Route::get('/example-articles', function (){
     ]);
 });
 
+Route::get('/articles', [ArticleController::class, 'index']);
 
