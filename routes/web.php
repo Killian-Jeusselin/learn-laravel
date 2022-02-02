@@ -63,8 +63,21 @@ Route::get('/example-articles', function (){
 // Route permettant de récupérer tous les articles
 Route::get('/articles', [ArticleController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
+//Route::get('/dashboard/articles', [ArticleController::class, 'adminIndex'])->middleware(['auth']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('/dashboard')->group(function () {
+        Route::get('', function () {
+            return view('dashboard');
+        })->name('dashboard');
+
+        Route::get('/articles', [ArticleController::class, 'adminIndex'])->name('dashboard-articles');
+    });
+});
 
 require __DIR__.'/auth.php';
