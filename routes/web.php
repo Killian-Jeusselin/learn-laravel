@@ -77,6 +77,13 @@ Route::middleware(['auth'])->group(function () {
         })->name('dashboard');
 
         Route::get('/articles', [ArticleController::class, 'adminIndex'])->name('dashboard-articles');
+        // create and store
+        Route::get('/articles/create', [ArticleController::class, 'create']);
+        Route::post('/articles', [ArticleController::class, 'store']);
+
+        //edit and update
+        Route::get('/articles/{id}', [ArticleController::class, 'edit'])->name('dashboard-articles-edit');
+        Route::put('/articles/{id}', [ArticleController::class, 'update']);
     });
 });
 
