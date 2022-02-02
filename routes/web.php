@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Models\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,14 @@ Route::get('/example-view-data', function (){
 |--------------------------------------------------------------------------
 |
 */
+// Route d'exemple : return a Sql statement (Anti pattern MVC)
+Route::get('/example-articles', function (){
+    $articles = DB::table('articles')->get();
+    // $articles = Article::all();
+    //return $articles;
+    return view('example.example-articles', [
+        "articles" => $articles
+    ]);
+});
+
+
