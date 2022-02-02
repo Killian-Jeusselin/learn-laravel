@@ -63,3 +63,8 @@ Route::get('/example-articles', function (){
 // Route permettant de récupérer tous les articles
 Route::get('/articles', [ArticleController::class, 'index']);
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
