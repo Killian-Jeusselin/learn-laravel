@@ -60,5 +60,6 @@ Route::get('/example-articles', function (){
     ]);
 });
 
+// Route permettant de récupérer tous les articles
 Route::get('/articles', [ArticleController::class, 'index']);
 
